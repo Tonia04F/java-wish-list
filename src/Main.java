@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -23,7 +24,7 @@ public class Main {
 		String conferma;
 		
 		//creo lista vuota
-		List<String> listaDesideri = new ArrayList<String>();
+		List<String> listaDesideri = new ArrayList<String>(3);
 		
 		
 		do {
@@ -31,26 +32,30 @@ public class Main {
 			listaDesideri.add(sc.nextLine());
 			System.out.println("la lista contiene: " + listaDesideri.size() + "desideri.");
 			
+			//ho deciso che la lista puo contenere tre desideri mettendo il 3 nelle parentesi dell inizializzazione
+			if(listaDesideri.size() == 3)
+				flag = true; 
 			
-			do {
-				System.out.println("vuoi inserire un nuovo desiderio?");
-				conferma = sc.nextLine();
-				
-				if(!conferma.equalsIgnoreCase("si") && !conferma.equalsIgnoreCase("no")) 
-					System.out.println("rispondi solo si o no.");
-					
-				
-			}while(!conferma.equalsIgnoreCase("no") && !conferma.equalsIgnoreCase("si"));
-			
-			if(conferma.equalsIgnoreCase("no"))
-				flag= true;
+			else {
+				do {
+					System.out.println("vuoi inserire un nuovo desiderio?");
+					conferma = sc.nextLine();
+
+					if (!conferma.equalsIgnoreCase("si") && !conferma.equalsIgnoreCase("no"))
+						System.out.println("rispondi solo si o no.");
+
+				} while (!conferma.equalsIgnoreCase("no") && !conferma.equalsIgnoreCase("si"));
+				if (conferma.equalsIgnoreCase("no"))
+					flag = true;
+			}
 			
 		}while(!flag);
 		
-		for(int i = 0; i < listaDesideri.size(); i++) {
-			System.out.println("il desiderio numero " + (i+1) + " è " + listaDesideri.get(i));
+		Collections.sort(listaDesideri);
+		System.out.println(listaDesideri);
+		
 		}
 	
 	}
 
-}
+
